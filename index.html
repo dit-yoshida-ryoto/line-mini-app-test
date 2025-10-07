@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    test
+    クエリパラメーター：<span id="qp"></span>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const query = Object.fromEntries(params.entries());
+        const text = JSON.stringify(params);
+        document.getElementById("qp").textContent = text;
+    </script>
 </body>
 </html>
