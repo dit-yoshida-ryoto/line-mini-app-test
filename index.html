@@ -8,29 +8,36 @@
 </head>
 <body>
     クエリパラメーター：<span id="qp"></span>
+    <div id="qp_en"></div>
     <script>
       // LIFF初期化
       liff
         .init({ liffId: "2007545023-YwdxGxoV" })
         .then(() => {
-        //   // 初期化後にクエリを取得
-        //   const params = new URLSearchParams(window.location.search);
-        //   const obj = {};
-        //   for (const [key, value] of params.entries()) {
-        //     obj[key] = value;
-        //   }
-
-        //   // JSON文字列化してHTMLに表示
-        //   document.getElementById("output").textContent = JSON.stringify(obj, null, 2);
-
             const params = new URLSearchParams(window.location.search);
-            const query = Object.fromEntries(params.entries());
-            const text = JSON.stringify(query);
-            document.getElementById("qp").textContent = text;
+            // const query = Object.fromEntries(params.entries());
+            // const text = JSON.stringify(query);
+            // document.getElementById("qp").textContent = text;
 
-            console.log(params);
-            console.log(query);
-            console.log(text);
+            // console.log(params);
+            // console.log(query);
+            // console.log(text);
+
+            let queryString = "";
+            if (params.has("liff.state")) {
+                // liff.state を取得して decode
+                queryString = params.get("liff.state");
+            } else {
+                queryString = window.location.search;
+            }
+
+            // 「?」を取り除き、URLSearchParamsでパース
+            const queryParams = new URLSearchParams(queryString.replace(/^\?/, ""));
+            const obj = {};
+            for (const [key, value] of queryParams.entries()) {
+                obj[key] = value;
+            }
+            document.getElementById("qp").textContent = JSON.stringify(obj, null, 2);
         })
         .catch((err) => {
           console.error("LIFF 初期化エラー:", err);
