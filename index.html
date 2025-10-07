@@ -23,11 +23,12 @@
 
             if (!isFriend.friendFlag) {
                 // 友だちでない場合は友だち追加ページに遷移
+                const currentUrl = location.href;
                 liff.openWindow({
-                    url: "https://line.me/R/ti/p/@311duzma",
+                    url: "https://line.me/R/ti/p/@311duzma?return=" + currentUrl,
                     external: false
                 });
-                document.getElementById('test').textContent = '0';
+                document.getElementById('test').textContent = '2';
             } else {
                 // 友だちの場合は通常のアプリ処理
                 console.log("友だち登録済み");
