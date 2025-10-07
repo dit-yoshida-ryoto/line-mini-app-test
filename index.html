@@ -9,6 +9,7 @@
 <body>
     クエリパラメーター：<span id="qp"></span>
     <div id="test">null</div>
+    <div id="name">name</div>
     <script>
       // LIFF初期化
       liff
@@ -25,7 +26,7 @@
                 // 友だちでない場合は友だち追加ページに遷移
                 const currentUrl = location.href;
                 liff.openWindow({
-                    url: "https://line.me/R/ti/p/@311duzma?return=" + currentUrl,
+                    url: "https://line.me/R/ti/p/%40311duzma?return=" + currentUrl,
                     external: false
                 });
                 document.getElementById('test').textContent = '2';
@@ -52,6 +53,15 @@
                 obj[key] = value;
             }
             document.getElementById("qp").textContent = JSON.stringify(obj, null, 2);
+
+            liff.getProfile()
+            .then((profile) => {
+                const name = profile.displayName;
+                document.getElementById('test').textContent = name;
+            })
+            .catch((err) => {
+                console.log("error", err);
+            });
         })
         .catch((err) => {
           console.error("LIFF 初期化エラー:", err);
