@@ -4,18 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
     クエリパラメーター：<span id="qp"></span>
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const query = Object.fromEntries(params.entries());
-        const text = JSON.stringify(query);
-        document.getElementById("qp").textContent = text;
+      // LIFF初期化
+      liff
+        .init({ liffId: "2007545023-YwdxGxoV" })
+        .then(() => {
+        //   // 初期化後にクエリを取得
+        //   const params = new URLSearchParams(window.location.search);
+        //   const obj = {};
+        //   for (const [key, value] of params.entries()) {
+        //     obj[key] = value;
+        //   }
 
-        console.log(params);
-        console.log(query);
-        console.log(text);
+        //   // JSON文字列化してHTMLに表示
+        //   document.getElementById("output").textContent = JSON.stringify(obj, null, 2);
+
+            const params = new URLSearchParams(window.location.search);
+            const query = Object.fromEntries(params.entries());
+            const text = JSON.stringify(query);
+            document.getElementById("qp").textContent = text;
+
+            console.log(params);
+            console.log(query);
+            console.log(text);
+        })
+        .catch((err) => {
+          console.error("LIFF 初期化エラー:", err);
+        });
     </script>
 </body>
 </html>
