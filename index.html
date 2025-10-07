@@ -25,9 +25,9 @@
                 // 友だちでない場合は友だち追加ページに遷移
                 liff.openWindow({
                     url: "https://line.me/R/ti/p/@311duzma",
-                    external: true
+                    external: false
                 });
-                document.getElementById('test').textContent = '2';
+                document.getElementById('test').textContent = '0';
             } else {
                 // 友だちの場合は通常のアプリ処理
                 console.log("友だち登録済み");
