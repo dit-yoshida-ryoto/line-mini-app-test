@@ -24,11 +24,11 @@
 
             if (!isFriend.friendFlag) {
                 // 友だちでない場合は友だち追加ページに遷移
-                const currentUrl = location.href;
-                liff.openWindow({
-                    url: "https://line.me/R/ti/p/%40311duzma?return=" + currentUrl,
-                    external: false
-                });
+                // const currentUrl = location.href;
+                // liff.openWindow({
+                //     url: "https://line.me/R/ti/p/%40311duzma?return=" + currentUrl,
+                //     external: false
+                // });
                 document.getElementById('test').textContent = '2';
             } else {
                 // 友だちの場合は通常のアプリ処理
@@ -57,7 +57,7 @@
             liff.getProfile()
             .then((profile) => {
                 const name = profile.displayName;
-                document.getElementById('test').textContent = name;
+                document.getElementById('name').textContent = name;
             })
             .catch((err) => {
                 console.log("error", err);
