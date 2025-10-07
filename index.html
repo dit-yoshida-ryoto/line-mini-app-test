@@ -10,8 +10,12 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const query = Object.fromEntries(params.entries());
-        const text = JSON.stringify(params);
+        const text = JSON.stringify(query);
         document.getElementById("qp").textContent = text;
+
+        console.log(params);
+        console.log(query);
+        console.log(text);
     </script>
 </body>
 </html>
