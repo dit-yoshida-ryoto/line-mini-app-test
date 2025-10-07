@@ -8,20 +8,33 @@
 </head>
 <body>
     クエリパラメーター：<span id="qp"></span>
-    <div id="qp_en"></div>
+    <div id="test"></div>
     <script>
       // LIFF初期化
       liff
         .init({ liffId: "2007545023-YwdxGxoV" })
         .then(() => {
-            const params = new URLSearchParams(window.location.search);
-            // const query = Object.fromEntries(params.entries());
-            // const text = JSON.stringify(query);
-            // document.getElementById("qp").textContent = text;
+            if (!liff.isLoggedIn()) {
+            liff.login(); // 必要ならログイン
+            }
+        })
+        .then(async () => {
+            const isFriend = await liff.getFriendship();
 
-            // console.log(params);
-            // console.log(query);
-            // console.log(text);
+            if (!isFriend.friendFlag) {
+                // 友だちでない場合は友だち追加ページに遷移
+                // liff.openWindow({
+                //     url: "https://line.me/R/ti/p/@あなたの公式アカウントID",
+                //     external: true
+                // });
+                document.getElementById('test').textContent = 0;
+            } else {
+                // 友だちの場合は通常のアプリ処理
+                console.log("友だち登録済み");
+                document.getElementById('test').textContent = 1;
+            }
+
+            const params = new URLSearchParams(window.location.search);
 
             let queryString = "";
             if (params.has("liff.state")) {
