@@ -8,7 +8,7 @@
 </head>
 <body>
     クエリパラメーター：<span id="qp"></span>
-    <div id="test"></div>
+    <div id="test">null</div>
     <script>
       // LIFF初期化
       liff
@@ -27,11 +27,11 @@
                 //     url: "https://line.me/R/ti/p/@あなたの公式アカウントID",
                 //     external: true
                 // });
-                document.getElementById('test').textContent = 0;
+                document.getElementById('test').textContent = '0';
             } else {
                 // 友だちの場合は通常のアプリ処理
                 console.log("友だち登録済み");
-                document.getElementById('test').textContent = 1;
+                document.getElementById('test').textContent = '1';
             }
 
             const params = new URLSearchParams(window.location.search);
